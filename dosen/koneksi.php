@@ -6,8 +6,6 @@ $pass = '';
 $db = 'web';
 
 
-
-
 $link = mysqli_connect($host, $user, $pass, $db);
 
 

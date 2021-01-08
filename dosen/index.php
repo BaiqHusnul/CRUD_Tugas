@@ -2,12 +2,17 @@
 <html>
 <head>
 	<title>Data Dosen</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-	<!-- <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" > -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
 </head>
 <body background="bg.png">
+
 	<div class="container">
 		<div class="alert alert-info">Data Dosen</div>
+
+
+		<a href="create.php" class="btn btn-info">Tambah Data</a>
+		<br><br>
+
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -21,24 +26,25 @@
 			<tbody>
 				<?php
 
-				require '../koneksi.php';
+				include("koneksi.php");
+				$no=1;
 				$query = "SELECT * FROM dosen";
 
 				$result = mysqli_query($link, $query);
-				while ($isi = mysqli_fetch_object($result)) {
+				while ($isi= mysqli_fetch_object($result)) {
 					# code...
-
 				?>
 				<tr>
 
-				<td><?=$no++; ?> </td>
-				<td><?= $isi->nip; ?></td>
+				<td><?=$no++; ?></td>
+				<td><?=$isi->nip; ?></td>
 				<td><?= $isi->nama_dosen; ?></td>
 				<td><?= $isi->alamat; ?></td>
 				
 				<td>
-					<a href=""class="btn btn-danger">Delete</a>
-					<a href=""class="btn btn-warning">Edit</a>
+					<a href="delete.php?nip=<?php echo $isi->nip; ?>" class="btn btn-danger">Delete</a>
+
+					<a href="update.php?url_nip=<?php echo $isi->nip; ?>" class="btn btn-warning">Edit</a>
 				</td>
 				
 				</tr>
